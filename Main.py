@@ -154,15 +154,51 @@ class MyStrategy(bt.Strategy):
                 print(f"Error updating trade: {e}")
                 return
 
+import time
+from datetime import datetime, timedelta
+import backtrader as bt
+import numpy as np
+from metaapi_cloud_sdk import MetaApi
 
-# Create an instance of the strategy
-strategy = MyStrategy()
 
-# Create a cerebro instance
-cerebro = bt.Cerebro()
+if __name__ == '__main__':
+    # Create an instance of the strategy
+    strategy = MyStrategy()
 
-# Add the strategy to cerebro
-cerebro.addstrategy(strategy)
+    # Create a cerebro instance
+    cerebro = bt.Cerebro()
 
-# Run the strategy every 3 minutes
-cerebro.run(interval=60)
+    # Add the strategy to cerebro
+    cerebro.addstrategy(strategy)
+
+    # Set the data parameters (you may need to adjust these according to your data)
+    data_params = {
+        'name': 'mydata',
+        'timeframe': bt.TimeFrame.Minutes,
+        'compression': 1,
+    }
+
+    # Create a data feed
+    data = bt.feeds.YourDataFeed(**data_params)  # Replace YourDataFeed with your actual data feed class
+
+    # Add the data feed to cerebro
+    cerebro.adddata(data)
+
+    # Run the strategy every 3 minutes
+    cerebro.run(**{
+        'runonce': False,
+        'exactbars': 1,
+        'fromdate': datetime.now() - timedelta(minutes=3),
+        'todate': datetime.now(),
+        'live': False
+    })
+
+    while True:
+        cerebro.run(**{
+            'runonce': False,
+            'exactbars': 1,
+            'fromdate': datetime.now() - timedelta(minutes=3),
+            'todate': datetime.now(),
+            'live': False
+        })
+        time.sleep(180)  # Wait for 3 minutes before running again
