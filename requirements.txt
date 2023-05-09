@@ -1,6 +1,6 @@
-
-
 ta-lib
 numpy
 metaapi-cloud-sdk
 requests
+
+
