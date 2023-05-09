@@ -1,4 +1,4 @@
-ta-lib
+backtrader
 numpy
 metaapi-cloud-sdk
 requests
