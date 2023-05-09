@@ -5,7 +5,7 @@ account_id='c11f5cfa-ff5c-40b7-9028-a87616f3a767'
 import backtrader as bt
 import numpy as np
 from metaapi_cloud_sdk import MetaApi
-class MyStrategy(bt.Strategy):
+class MyStrategys(bt.Strategy):
     params = (
         ('atr_periods', 14),
         ('atr_multiplier', 2),
@@ -37,7 +37,7 @@ class MyStrategy(bt.Strategy):
     def next(self):
         # Get the latest candle data
         try:
-            candles = self.api.metatrader_candles_api.get_candles(self.params.account_id, self.params.symbol, '1M', 1000)
+            candles = self.api.metatrader_candles_api.get_candles(self.params.account_id, self.params.symbol, 'M1', 1000)
         except Exception as e:
             print(f"Error retrieving candle data: {e}")
             return
@@ -144,8 +144,9 @@ class MyStrategy(bt.Strategy):
             except Exception as e:
                 print(f"Error updating trade: {e}")
                 return
-# Run the analysis every 3 minutes
-'''import time
+strategy=MyStrategys()
 while True:
-    MyStrategy(bt.Strategy)
-    time.sleep(60)  # 3 minutes delay'''
+    cerebro = bt.Cerebro()
+    cerebro.addstrategy(strategy)
+    cerebro.run()
+    time.sleep(
