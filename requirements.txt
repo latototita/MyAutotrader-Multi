@@ -1,3 +1,6 @@
-TA-Lib
+
+ta_lib-0.4.25-cp311-cp311-win_amd64.whl
+ta-lib
+numpy
 metaapi-cloud-sdk
 requests
