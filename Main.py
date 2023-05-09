@@ -149,4 +149,4 @@ while True:
     cerebro = bt.Cerebro()
     cerebro.addstrategy(strategy)
     cerebro.run()
-    time.sleep(
+    time.sleep(120)
