@@ -1,6 +1,4 @@
-tulipy
-numpy
-metaapi-cloud-sdk
-requests
+MetaTrader5
+pandas_ta
 
 
