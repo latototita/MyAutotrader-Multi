@@ -1,4 +1,4 @@
-backtrader
+tulipy
 numpy
 metaapi-cloud-sdk
 requests
