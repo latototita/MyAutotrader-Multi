@@ -1,4 +1,6 @@
-MetaTrader5EasyT
+metaapi-cloud-sdk
 pandas_ta
+numpy
+pandas
 
 
